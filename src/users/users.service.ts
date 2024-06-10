@@ -10,13 +10,13 @@ import { BanUserDto } from './dto/ban-user.dto';
 export class UsersService {
   constructor(
     @InjectModel(User) private userRepository: typeof User,
-    private rolesService: RolesService,
+    private roleService: RolesService,
   ) {}
 
   async createUser(dto: CreateUserDto) {
     const user = await this.userRepository.create(dto);
-    const role = await this.rolesService.getRoleByValue('ADMIN');
-    user.$set('roles', [role.id]);
+    const role = await this.roleService.getRoleByValue('ADMIN');
+    await user.$set('roles', [role.id]);
     user.roles = [role];
     return user;
   }
@@ -36,7 +36,7 @@ export class UsersService {
 
   async addRole(dto: AddRoleDto) {
     const user = await this.userRepository.findByPk(dto.userId);
-    const role = await this.rolesService.getRoleByValue(dto.value);
+    const role = await this.roleService.getRoleByValue(dto.value);
     if (role && user) {
       await user.$add('role', role.id);
       return dto;
