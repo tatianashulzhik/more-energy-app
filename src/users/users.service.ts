@@ -1,10 +1,17 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './users.models';
 import { CreateUserDto } from './dto/create-user.dto';
 import { RolesService } from 'src/roles/roles.service';
 import { AddRoleDto } from './dto/add-role.dto';
 import { BanUserDto } from './dto/ban-user.dto';
+import { ChangePasswordDto } from './dto/change-password.dto';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UsersService {
@@ -56,5 +63,28 @@ export class UsersService {
     user.banReason = dto.banReason;
     await user.save();
     return user;
+  }
+
+  async changePassword(changePasswordDto: ChangePasswordDto) {
+    const user = await this.userRepository.findOne({
+      where: { email: changePasswordDto.email },
+    });
+
+    if (!user) {
+      throw new BadRequestException('Пользователь с данным email не найден');
+    }
+
+    const isPasswordValid = await bcrypt.compare(
+      changePasswordDto.oldPassword,
+      user.password,
+    );
+
+    if (!isPasswordValid) {
+      throw new BadRequestException('Неверный старый пароль');
+    }
+
+    user.password = await bcrypt.hash(changePasswordDto.newPassword, 5);
+    user.save();
+    return { user };
   }
 }
