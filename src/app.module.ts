@@ -9,6 +9,8 @@ import { UserRoles } from './roles/user-roles.model';
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
+import { BodyIndicatorsModule } from './body-indicators/body-indicators.module';
+import { BodyIndicator } from './body-indicators/body-indicators.models';
 
 @Module({
   controllers: [AuthController],
@@ -24,12 +26,13 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User, Role, UserRoles],
+      models: [User, Role, UserRoles, BodyIndicator],
       autoLoadModels: true,
     }),
     UsersModule,
     RolesModule,
     AuthModule,
+    BodyIndicatorsModule,
   ],
 })
 export class AppModule {}

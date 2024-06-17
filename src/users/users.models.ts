@@ -3,9 +3,11 @@ import {
   BelongsToMany,
   Column,
   DataType,
+  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
+import { BodyIndicator } from 'src/body-indicators/body-indicators.models';
 import { Role } from 'src/roles/roles.models';
 import { UserRoles } from 'src/roles/user-roles.model';
 
@@ -43,4 +45,7 @@ export class User extends Model<User, UserCreationAttrs> {
 
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];
+
+  @HasMany(() => BodyIndicator)
+  bodyIndicator: BodyIndicator[];
 }
