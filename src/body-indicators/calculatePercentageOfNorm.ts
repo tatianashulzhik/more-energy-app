@@ -10,7 +10,7 @@ export interface HealthIndicators {
   AGRatio?: number;
   cholesterol?: number;
   bloodSugarRatio?: number;
-  userId?: number
+  userId?: number;
 }
 
 export const norms: HealthIndicators = {
@@ -31,7 +31,7 @@ export function calculatePercentageOfNorm(
   userInput: HealthIndicators,
   norms: HealthIndicators,
 ): HealthIndicators {
-  let percentages: HealthIndicators = {};
+  const percentages: HealthIndicators = {};
   for (const key in norms) {
     if (norms[key] && userInput[key]) {
       percentages[key] = (userInput[key] / norms[key]) * 100;

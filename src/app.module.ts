@@ -27,7 +27,7 @@ import { BodyIndicator } from './body-indicators/body-indicators.models';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
       models: [User, Role, UserRoles, BodyIndicator],
-      autoLoadModels: true,
+      // autoLoadModels: true,
     }),
     UsersModule,
     RolesModule,

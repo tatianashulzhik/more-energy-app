@@ -16,39 +16,39 @@ export class BodyIndicator extends Model<BodyIndicator> {
     primaryKey: true,
   })
   id: number;
-  
-  @Column({ type: DataType.STRING, allowNull: true })
-  weight: string;
 
-  @Column({ type: DataType.STRING, allowNull: true })
-  bloodFatPercentage: string;
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  weight: number;
 
-  @Column({ type: DataType.STRING, allowNull: true })
-  visceralFat: string;
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  bloodFatPercentage: number;
 
-  @Column({ type: DataType.STRING, allowNull: true })
-  skeletalMuscleMass: string;
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  visceralFat: number;
 
-  @Column({ type: DataType.STRING, allowNull: true })
-  bloodPressure: string;
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  skeletalMuscleMass: number;
 
-  @Column({ type: DataType.STRING, allowNull: true })
-  heartRate: string;
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  bloodPressure: number;
 
-  @Column({ type: DataType.STRING, allowNull: true })
-  waistCircumference: string;
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  heartRate: number;
 
-  @Column({ type: DataType.STRING, allowNull: true })
-  hipCircumference: string;
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  waistCircumference: number;
 
-  @Column({ type: DataType.STRING, allowNull: true })
-  AGRatio: string;
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  hipCircumference: number;
 
-  @Column({ type: DataType.STRING, allowNull: true })
-  cholesterol: string;
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  AGRatio: number;
 
-  @Column({ type: DataType.STRING, allowNull: true })
-  bloodSugarRatio: string;
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  cholesterol: number;
+
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  bloodSugarRatio: number;
 
   @ForeignKey(() => User)
   @Column({ type: DataType.INTEGER })

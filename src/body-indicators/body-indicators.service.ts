@@ -1,4 +1,4 @@
-import { Injectable, Res } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { BodyIndicator } from './body-indicators.models';
 import { CreateBodyIndicatorDto } from './dto/create-body-indicator.dto';
